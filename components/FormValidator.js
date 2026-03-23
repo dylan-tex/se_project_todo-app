@@ -49,8 +49,10 @@ class FormValidator {
       this._hideInputError(inputElement);
     }
   }
+
+  //Cache commonly reused form elements as instance fields (e.g., this._inputList and this._submitButton/this._buttonElement) when initializing the validator (constructor or _setEventListeners) and use those fields inside _toggleButtonState and _hasInvalidInput—remove the redundant parameters from those methods. Keep the single inputElement parameter for handlers that need the specific input. This reduces repeated queries, avoids passing duplicate state, and aligns with the project's OOP checklist.
   _setEventListeners() {
-    const inputList = Array.from(
+    this._inputList = Array.from(
       this._formEl.querySelectorAll(this._inputSelector),
     );
     const buttonElement = this._formEl.querySelector(
