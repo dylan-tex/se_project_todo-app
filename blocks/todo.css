@@ -103,6 +103,11 @@
     height: 24px;
   }
 
+  /* Add a :hover state for .todo__delete-btn so all interactive elements provide visual feedback, as required by the checklist (for example, a slight opacity or color change). */
+  .todo__delete-btn:hover {
+    opacity: 0.8;
+  }
+
   .todo__delete-btn::before {
     content: "";
   }
