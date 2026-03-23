@@ -13,7 +13,6 @@ class Todo {
     // Set up the checkbox change handler
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
-      console.log(this._data.completed);
     });
   }
 
