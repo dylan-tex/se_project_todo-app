@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 import { initialTodos, validationConfig } from "../utils/constants.js";
-import Todo from "../components/Todo.js";
+import Todo from "../components/todo.js";
 // import
 import FormValidator from "../components/FormValidator.js";
 
@@ -26,40 +26,11 @@ const generateTodo = (data) => {
   const todoElement = todo.getView();
 
   return todoElement;
+};
 
-  // To Be Removed: This logic should be handled in the Todo class. The constructor should take in the data and the selector for the template, and the getView method should return the generated DOM element for the todo.
-
-  /*  const todoElement = todoTemplate.content; */
-  /*     .querySelector(".todo")
-    .cloneNode(true);
-  const todoNameEl = todoElement.querySelector(".todo__name");
-  const todoCheckboxEl = todoElement.querySelector(".todo__completed");
-  const todoLabel = todoElement.querySelector(".todo__label");
-  const todoDate = todoElement.querySelector(".todo__date");
-  const todoDeleteBtn = todoElement.querySelector(".todo__delete-btn");
-
-  todoNameEl.textContent = data.name;
-  todoCheckboxEl.checked = data.completed;
-
-  // Apply id and for attributes.
-  // The id will initially be undefined for new todos.
-  todoCheckboxEl.id = `todo-${data.id}`;
-  todoLabel.setAttribute("for", `todo-${data.id}`);
-
-  // If a due date has been set, parsing this it with `new Date` will return a
-  // number. If so, we display a string version of the due date in the todo.
-  const dueDate = new Date(data.date);
-  if (!isNaN(dueDate)) {
-    todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    })}`;
-  }
-
-  todoDeleteBtn.addEventListener("click", () => {
-    todoElement.remove();
-  }); */
+const renderTodo = (data) => {
+  const todo = generateTodo(data);
+  todosList.append(todo);
 };
 
 addTodoButton.addEventListener("click", () => {
@@ -81,15 +52,11 @@ addTodoForm.addEventListener("submit", (evt) => {
 
   const id = uuidv4();
   const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  renderTodo(values);
   closeModal(addTodoPopup);
 });
 
-initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-});
+initialTodos.forEach(renderTodo);
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
