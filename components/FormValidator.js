@@ -55,26 +55,34 @@ class FormValidator {
     this._inputList = Array.from(
       this._formEl.querySelectorAll(this._inputSelector),
     );
-    const buttonElement = this._formEl.querySelector(
+    this._buttonElement = this._formEl.querySelector(
       this._submitButtonSelector,
     );
 
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(this._inputList, this._buttonElement);
 
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
 
+  enableValidation() {
+    this._formEl.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+    this._setEventListeners();
+  }
+
   //Add a public resetValidation() method (no parameters) to FormValidator as required by Task 6: it must reset the form inputs, hide/clear any visible validation error messages, and disable the submit button; implement it inside the class to keep validation encapsulated and call it from index.js only after a successful submission (otherwise the form can reopen with old values and an enabled button).
   resetValidation() {
+    this._formEl.reset();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-    this._setEventListeners();
+    this._toggleButtonState(this._inputList, this._buttonElement);
   }
 }
 
