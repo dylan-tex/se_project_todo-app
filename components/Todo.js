@@ -37,8 +37,22 @@ class Todo {
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     todoNameEl.textContent = this._data.name;
+
     // ToDO Implement Dates
-    todoDate.textContent = this._data.dueDate;
+    const rawDate = this._data.date;
+    const due = new Date(rawDate);
+
+    if (rawDate && !Number.isNaN(due.getTime())) {
+      todoDate.textContent =
+        "Due: " +
+        due.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+    } else {
+      todoDate.textContent = "";
+    }
 
     this._generateCheckboxEl();
     this._setupEventListeners();
