@@ -1,7 +1,5 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
-console.log(uuidv4());
-
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 // import
