@@ -25,8 +25,6 @@ Users can view starter tasks, add new tasks through a popup form, and manage tas
   - App initialization and event wiring in [pages/index.js](pages/index.js)
   - Static data and validation config in [utils/constants.js](utils/constants.js)
 
-##
-
 ## Deployment
 
 This project is deployed on GitHub Pages:
