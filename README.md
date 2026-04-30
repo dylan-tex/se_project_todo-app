@@ -12,6 +12,7 @@ Users can view starter tasks, add new tasks through a popup form, and manage tas
 - Toggles task completion state with a checkbox
 - Deletes todo items
 - Validates form inputs with a FormValidator class (error states + submit button state)
+- Updates the completed/total todo counter when todos are added, checked, unchecked, or deleted
 
 ## Technology
 
@@ -22,6 +23,9 @@ Users can view starter tasks, add new tasks through a popup form, and manage tas
 - Component-based architecture:
   - Todo item rendering and behavior in [components/Todo.js](components/Todo.js)
   - Form validation in [components/FormValidator.js](components/FormValidator.js)
+  - List rendering in [components/Section.js](components/Section.js)
+  - Popup behavior in [components/Popup.js](components/Popup.js) and [components/PopupWithForm.js](components/PopupWithForm.js)
+  - Counter state in [components/TodoCounter.js](components/TodoCounter.js)
   - App initialization and event wiring in [pages/index.js](pages/index.js)
   - Static data and validation config in [utils/constants.js](utils/constants.js)
 

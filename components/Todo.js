@@ -1,18 +1,20 @@
 class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, handleCheck, handleDelete) {
     this._data = data;
     this._templateElement = document.querySelector(selector);
+    this._handleCheck = handleCheck;
+    this._handleDelete = handleDelete;
   }
 
   _setupEventListeners() {
-    // Set up the delete button handler
     this._todoDeleteBtn.addEventListener("click", () => {
+      this._handleDelete(this._data.completed);
       this._todoElement.remove();
     });
 
-    // Set up the checkbox change handler
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
+      this._handleCheck(this._data.completed);
     });
   }
 
@@ -33,12 +35,10 @@ class Todo {
 
     const todoDate = this._todoElement.querySelector(".todo__date");
 
-    // assign to instance property so _setupEventListeners can use it
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     todoNameEl.textContent = this._data.name;
 
-    // ToDO Implement Dates
     const rawDate = this._data.date;
     const due = new Date(rawDate);
 

@@ -30,6 +30,10 @@
   background-image: url(../images/checkbox.svg);
 }
 
+.todo__completed:hover {
+  opacity: 0.6;
+}
+
 .todo__name {
   font-weight: 500;
   color: #181818;
@@ -70,7 +74,6 @@
   cursor: pointer;
 }
 
-/* Add a :hover state for .todo__delete-btn so all interactive elements provide visual feedback, as required by the checklist (for example, a slight opacity or color change). */
 .todo__delete-btn:hover {
   opacity: 0.6;
 }
