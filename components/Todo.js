@@ -40,12 +40,12 @@ class Todo {
     todoNameEl.textContent = this._data.name;
 
     const rawDate = this._data.date;
-    const due = new Date(rawDate);
+    const dueDate = new Date(rawDate);
 
-    if (rawDate && !Number.isNaN(due.getTime())) {
+    if (rawDate && !Number.isNaN(dueDate.getTime())) {
       todoDate.textContent =
         "Due: " +
-        due.toLocaleDateString("en-US", {
+        dueDate.toLocaleDateString("en-US", {
           year: "numeric",
           month: "short",
           day: "numeric",
